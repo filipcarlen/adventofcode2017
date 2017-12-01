@@ -2,12 +2,11 @@ const input = '95134467996366852979296466896829971143167334454515345323517785342
 const numbers = input.split('').map((val) => Number(val));
 
 const res = numbers.filter((elem, pos) => {
-  if((pos+1) === numbers.length) {
-    return numbers[0] === elem;
+  if(numbers[pos+1]) {
+    return numbers[pos+1] === elem;
   }
-  return numbers[pos+1] === elem;
+  return numbers[0] === elem;
 }).reduce((sum, val) => {
-
   return sum + val
 });
 
