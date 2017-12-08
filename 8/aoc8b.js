@@ -35,22 +35,26 @@ const checkValue = (comparingRegister, operator, value) => {
   }
 }
 
+var max = 0;
+
 const modifyRegister = (register, instruction, instructionValue) => {
   switch(instruction) {
     case 'inc' :
       hash[register] = hash[register] + Number(instructionValue);
-      return hash[register];
+      break;
     case 'dec' :
       hash[register] = hash[register] - Number(instructionValue);
-      return hash[register];
+      break;
   }
+  max = hash[register] > max ? hash[register] : max;
+  return hash[register];
 }
 
 input.forEach((row) => {
   if(checkValue(row[Row.COMPARING_REGISTER], row[Row.OPERATOR], row[Row.VALUE])) {
-    modifyRegister(row[Row.REGISTER], row[Row.INSTRUCTION], row[Row.INSTRUCTION_VALUE]);
+  modifyRegister(row[Row.REGISTER], row[Row.INSTRUCTION], row[Row.INSTRUCTION_VALUE]);
   }
 })
 
 
-console.log(hash);   //easy to see the highest           
+console.log(max);              
