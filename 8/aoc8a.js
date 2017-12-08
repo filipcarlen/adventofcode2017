@@ -35,15 +35,19 @@ const checkValue = (comparingRegister, operator, value) => {
   }
 }
 
+var max = 0;
+
 const modifyRegister = (register, instruction, instructionValue) => {
   switch(instruction) {
     case 'inc' :
       hash[register] = hash[register] + Number(instructionValue);
-      return hash[register];
+      break;
     case 'dec' :
       hash[register] = hash[register] - Number(instructionValue);
-      return hash[register];
+      break;
   }
+  max = hash[register] > max ? hash[register] : max;
+  return hash[register];
 }
 
 input.forEach((row) => {
@@ -53,4 +57,4 @@ input.forEach((row) => {
 })
 
 
-console.log(hash);              
+console.log(max);              
